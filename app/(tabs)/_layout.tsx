@@ -63,24 +63,12 @@ export default function TabLayout() {
           title: "Discover",
           tabBarIcon: ({ color }) => <Ionicons name="compass" color={color} size={28} />,
         }}
-        listeners={{
-          // disabled
-          tabPress: (e) => {
-            e.preventDefault();
-          },
-        }}
       />
       <Tabs.Screen
         name="activity"
         options={{
           title: "Activity",
           tabBarIcon: ({ color }) => <Ionicons name="stopwatch-sharp" color={color} size={28} />,
-        }}
-        listeners={{
-          // disabled
-          tabPress: (e) => {
-            e.preventDefault();
-          },
         }}
       />
       <Tabs.Screen
@@ -89,24 +77,12 @@ export default function TabLayout() {
           title: "Bookmarks",
           tabBarIcon: ({ color }) => <TabBarIcon name="bookmark" color={color} />,
         }}
-        listeners={{
-          // disabled
-          tabPress: (e) => {
-            e.preventDefault();
-          },
-        }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           title: "Profile",
           tabBarIcon: ({ color }) => <TabBarIcon name="account-circle" color={color} />,
-        }}
-        listeners={{
-          // disabled
-          tabPress: (e) => {
-            e.preventDefault();
-          },
         }}
       />
     </Tabs>

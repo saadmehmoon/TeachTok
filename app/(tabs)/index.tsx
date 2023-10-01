@@ -72,17 +72,22 @@ export default function TabOneScreen() {
   const load = async (num: number) => {
     const newData: Data[] = [];
     for (let i = 0; i < num; i++) {
-      const { data: resData } = await axios.get("https://cross-platform.rp.devfactory.com/for_you");
-      const { data: answerData } = await axios.get(`https://cross-platform.rp.devfactory.com/reveal?id=${resData.id}`);
-      const correctOptions = answerData.correct_options.map((option: any) => option.id);
-      const modifiedData = {
-        ...resData,
-        options: resData.options.map((option: any) => ({ ...option, correct: false, wrong: false })),
-        correctOptions,
-        selected: false,
-        uid: uid + i,
-      };
-      newData.push(modifiedData);
+      try {
+        const { data: resData } = await axios.get("https://cross-platform.rp.devfactory.com/for_you");
+        const { data: answerData } = await axios.get(`https://cross-platform.rp.devfactory.com/reveal?id=${resData.id}`);
+        const correctOptions = answerData.correct_options.map((option: any) => option.id);
+        const modifiedData = {
+          ...resData,
+          options: resData.options.map((option: any) => ({ ...option, correct: false, wrong: false })),
+          correctOptions,
+          selected: false,
+          uid: uid + i,
+        };
+        newData.push(modifiedData);
+      } catch (e) {
+        console.log(e);
+        return;
+      }
     }
     setData((data) => [...data, ...newData]);
     setUid((uid) => uid + num);
